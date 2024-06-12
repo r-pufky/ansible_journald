@@ -1,0 +1,16 @@
+---
+# role variable returned variables are scoped to the current play only (e.g.
+# converge.yml) and must be tested between each application of the role. Test
+# these values while converging versus verify.yml (where scoping wll prevent)
+# testing these values.
+#
+# Reference:
+# * https://github.com/ansible/molecule/issues/816
+
+- name: 'Default | converge'
+  hosts: all
+  gather_facts: true
+  tasks:
+    - name: 'Default | converge | configure journald'
+      ansible.builtin.include_role:
+        name: 'journald'

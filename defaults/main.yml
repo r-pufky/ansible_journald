@@ -1,0 +1,195 @@
+---
+# yamllint disable rule:line-length
+###############################################################################
+# Journald       Management
+###############################################################################
+# Configure systemd journal logging options for services.
+#
+# Time specifications use systemd formats.
+#
+# Size specifications use systemd formats, defaults to bytes or use K, M, G, T,
+# P, E as units for the specified sizes (10, 10K, 10M).
+#
+# Reference:
+# * https://www.freedesktop.org/software/systemd/man/latest/journald.conf.html
+# * https://www.freedesktop.org/software/systemd/man/latest/systemd.time.html
+# * https://www.freedesktop.org/software/systemd/man/latest/systemd.syntax.html
+# * https://www.freedesktop.org/software/systemd/man/latest/systemd-journald.service.html
+
+# Where to store journal data.
+#
+# Values:
+#     volatile: journal log data will be stored only in memory
+#   persistent: data will be stored preferably on disk
+#         auto: behave like persistent if /var/log/journal exists else volatile
+#         none: turns off all storage
+#
+# Default: 'auto'.
+journald_storage: 'auto'
+
+# Compress objects larger than the default threshold of 512 bytes.
+#
+# journald_compress: true
+# journald_compress: '1M'
+#
+# Default: True.
+journald_compress: true
+
+# Enable forward secure sealing if sealing key is available.
+# Protects from unnoticed alteration.
+#
+# Default: True.
+journald_seal: true
+
+# Split journal file per user? Default: True.
+journald_split_mode: true
+
+# Time before synchronizing journal files to disk. Default: '5m'.
+journald_sync_interval_sec: '5m'
+
+# System wide rate limiting interval.
+# If the time interval defined by journald_rate_limit_interval_sec more
+# messages than specified in journald_rate_limit_burst are logged by a
+# service, all further messages within the interval are dropped until the
+# interval is over.
+#
+# Default: '30s'.
+journald_rate_limit_interval_sec: '30s'
+
+# System wide burst rate limit. Default: '10000'.
+# If the time interval defined by journald_rate_limit_interval_sec more
+# messages than specified in journald_rate_limit_burst are logged by a
+# service, all further messages within the interval are dropped until the
+# interval is over.
+#
+# Default: 10000.
+journald_rate_limit_burst: 10000
+
+# Persistent max journal disk use (all journals). Default: '500M'.
+journald_system_max_use: '500M'
+
+# Persistent disk space to always keep free. Default: '' (use entire disk).
+journald_system_keep_free: ''
+
+# Persistent max individual journal size. Default: '' (no limit).
+journald_system_max_file_size: ''
+
+# Persistent max individual journal files. Default: 100.
+journald_system_max_files: 100
+
+# Volatile max journal disk use (all journals). Default: '500M'.
+journald_runtime_max_use: '500M'
+
+# Volatile disk space to always keep free. Default: '' (use entire disk).
+journald_runtime_keep_free: ''
+
+# Volatile max individual journal size. Default: '' (no limit).
+journald_runtime_max_file_size: ''
+
+# Volatile max individual journal files. Default: 100.
+journald_runtime_max_files: '100'
+
+# Maximum time to store journal entries. Default: '' (disabled).
+journald_max_retention_sec: ''
+
+# Maximum time to store entries before rotating. Default: '1month'.
+journald_max_file_sec: '1month'
+
+# Forward log messages to syslog? Default: True.
+journald_forward_to_syslog: true
+
+# Forward log messages to kernel log buffer? Default: False.
+journald_forward_to_k_msg: false
+
+# Forward log messages to system console? Default: False.
+journald_forward_to_console: false
+
+# Forward log messages to system wall? Default: True.
+journald_forward_to_wall: true
+
+# Console log path. Default: '/dev/console'.
+journald_tty_path: '/dev/console'
+
+# Maximum log level stored system wide.
+#
+# Values:
+#     emerg: 0
+#     alert: 1
+#      crit: 2
+#       err: 3
+#   warning: 4
+#    notice: 5
+#      info: 6
+#     debug: 7
+#
+# Default: 'debug'.
+journald_max_level_store: 'debug'
+
+# Maximum log level stored in syslog.
+#
+# Values:
+#     emerg: 0
+#     alert: 1
+#      crit: 2
+#       err: 3
+#   warning: 4
+#    notice: 5
+#      info: 6
+#     debug: 7
+#
+# Default: 'debug'.
+journald_max_level_syslog: 'debug'
+
+# Maximum log level stored kernel logs.
+#
+# Values:
+#     emerg: 0
+#     alert: 1
+#      crit: 2
+#       err: 3
+#   warning: 4
+#    notice: 5
+#      info: 6
+#     debug: 7
+#
+# Default: 'debug'.
+journald_max_level_k_msg: 'notice'
+
+# Maximum log level stored to consoles.
+#
+# Values:
+#     emerg: 0
+#     alert: 1
+#      crit: 2
+#       err: 3
+#   warning: 4
+#    notice: 5
+#      info: 6
+#     debug: 7
+#
+# Default: 'debug'.
+journald_max_level_console: 'info'
+
+# Maximum log level stored to wall.
+#
+# Values:
+#     emerg: 0
+#     alert: 1
+#      crit: 2
+#       err: 3
+#   warning: 4
+#    notice: 5
+#      info: 6
+#     debug: 7
+#
+# Default: 'debug'.
+journald_max_level_wall: 'emerg'
+
+# Maximum line length when converting stream logs into record logs.
+journald_line_max: '48K'
+
+# Process kernel messages from /dev/kmsg. Default: True.
+journald_read_k_msg: true
+
+# Enable kernel auditing on startup. Default: False.
+journald_audit: false

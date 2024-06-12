@@ -1,0 +1,31 @@
+---
+# yamllint disable rule:line-length
+- name: 'Default | verify | config'
+  hosts: 'all'
+  gather_facts: false
+  tasks:
+    - name: 'Default | verify | config | gather service status'
+      ansible.builtin.service_facts:
+
+    - name: 'Default | verify | config | query journald expected config'
+      ansible.builtin.copy:
+        src: 'files/journald.conf'
+        dest: '/etc/systemd/journald.conf'
+        owner: 'root'
+        group: 'root'
+        mode: '0644'
+      check_mode: true
+      diff: true
+      register: _test_journald_config
+
+    - name: 'Default | verify | config | assert journald config'
+      ansible.builtin.assert:
+        that:
+          - not _test_journald_config.changed
+        fail_msg: '/etc/systemd/journald.conf is not in expected format: {{ _test_journald_config.diff }}.'
+
+    - name: 'Default | verify | config | assert journald active'
+      ansible.builtin.assert:
+        that:
+          - '"systemd-journald.service" in ansible_facts.services'
+        fail_msg: 'systemd-journald service should be enabled.'
