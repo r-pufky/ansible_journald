@@ -1,5 +1,5 @@
 ---
-- name: 'Main | set journald limits'
+- name: 'Set journald limits'
   ansible.builtin.template:
     src: 'journald.conf.j2'
     dest: '/etc/systemd/journald.conf'

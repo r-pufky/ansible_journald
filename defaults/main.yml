@@ -1,7 +1,7 @@
 ---
 # yamllint disable rule:line-length
 ###############################################################################
-# Journald       Management
+# Journald Management
 ###############################################################################
 # Configure systemd journal logging options for services.
 #
@@ -29,13 +29,16 @@ journald_storage: 'auto'
 
 # Compress objects larger than the default threshold of 512 bytes.
 #
-# journald_compress: true
-# journald_compress: '1M'
+# Values:
+#     True: compress objects larger than 512 bytes (default)
+#   {SIZE}: compress objects larger than {SIZE}
+#    False: do not compress objects
 #
 # Default: True.
 journald_compress: true
 
 # Enable forward secure sealing if sealing key is available.
+#
 # Protects from unnoticed alteration.
 #
 # Default: True.
@@ -48,6 +51,7 @@ journald_split_mode: true
 journald_sync_interval_sec: '5m'
 
 # System wide rate limiting interval.
+#
 # If the time interval defined by journald_rate_limit_interval_sec more
 # messages than specified in journald_rate_limit_burst are logged by a
 # service, all further messages within the interval are dropped until the
@@ -56,7 +60,8 @@ journald_sync_interval_sec: '5m'
 # Default: '30s'.
 journald_rate_limit_interval_sec: '30s'
 
-# System wide burst rate limit. Default: '10000'.
+# System wide burst rate limit.
+#
 # If the time interval defined by journald_rate_limit_interval_sec more
 # messages than specified in journald_rate_limit_burst are logged by a
 # service, all further messages within the interval are dropped until the

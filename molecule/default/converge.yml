@@ -1,7 +1,7 @@
 ---
-# role variable returned variables are scoped to the current play only (e.g.
+# Role variable returned variables are scoped to the current play only (e.g.
 # converge.yml) and must be tested between each application of the role. Test
-# these values while converging versus verify.yml (where scoping wll prevent)
+# these values while converging versus verify.yml (where scoping will prevent)
 # testing these values.
 #
 # Reference:
@@ -13,4 +13,4 @@
   tasks:
     - name: 'Default | converge | configure journald'
       ansible.builtin.include_role:
-        name: 'journald'
+        name: 'r_pufky.srv.journald'

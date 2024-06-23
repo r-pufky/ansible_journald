@@ -3,10 +3,10 @@
 ###############################################################################
 # Journald Handlers
 ###############################################################################
-
 # Journald streams are uninterrupted during restart.
 # Reference:
 # * https://www.freedesktop.org/software/systemd/man/latest/systemd-journald.service.html#Stream%20logging
+
 - name: 'Handlers | restart journald'
   ansible.builtin.service:
     name: 'systemd-journald'
