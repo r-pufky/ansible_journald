@@ -7,7 +7,7 @@
 # Reference:
 # * https://www.freedesktop.org/software/systemd/man/latest/systemd-journald.service.html#Stream%20logging
 
-- name: 'Handlers | restart journald'
+- name: 'Handlers | restarted journald'
   ansible.builtin.service:
     name: 'systemd-journald'
-    state: 'restart'
+    state: 'restarted'
