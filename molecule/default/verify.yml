@@ -1,5 +1,4 @@
 ---
-# yamllint disable rule:line-length
 - name: 'Default | verify | config'
   hosts: 'all'
   gather_facts: false
@@ -22,7 +21,9 @@
       ansible.builtin.assert:
         that:
           - not _test_journald_config.changed
-        fail_msg: '/etc/systemd/journald.conf is not in expected format: {{ _test_journald_config.diff }}.'
+        fail_msg: >
+          /etc/systemd/journald.conf is not in expected format:
+          {{ _test_journald_config.diff }}.
 
     - name: 'Default | verify | config | assert journald active'
       ansible.builtin.assert:
