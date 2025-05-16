@@ -6,6 +6,7 @@
 # Journald streams are uninterrupted during restart.
 # Reference:
 # * https://www.freedesktop.org/software/systemd/man/latest/systemd-journald.service.html#Stream%20logging
+# yamllint enable rule:line-length
 
 - name: 'Handlers | restarted journald'
   ansible.builtin.service:

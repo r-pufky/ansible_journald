@@ -1,5 +1,6 @@
 ---
 galaxy_info:
+  role_name: 'journald'
   author: 'r_pufky'
   description: 'Journald configuration.'
   company: 'N/A'

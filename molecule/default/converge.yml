@@ -3,6 +3,6 @@
   hosts: 'all'
   gather_facts: false
   tasks:
-    - name: 'Default | converge | apply r_pufky.srv.journald'
+    - name: 'Default | converge | apply r_pufky.deb.journald'
       ansible.builtin.include_role:
-        name: 'r_pufky.srv.journald'
+        name: 'r_pufky.deb.journald'

@@ -1,32 +1,26 @@
 ---
-- name: 'Default | verify | config'
+- name: 'Default | verify'
   hosts: 'all'
   gather_facts: false
   tasks:
-    - name: 'Default | verify | config | gather service status'
+    - name: 'Default | verify | gather service status'
       ansible.builtin.service_facts:
-
-    - name: 'Default | verify | config | query journald expected config'
-      ansible.builtin.copy:
-        src: 'files/journald.conf'
-        dest: '/etc/systemd/journald.conf'
-        owner: 'root'
-        group: 'root'
-        mode: '0644'
-      check_mode: true
-      diff: true
-      register: _test_journald_config
-
-    - name: 'Default | verify | config | assert journald config'
-      ansible.builtin.assert:
-        that:
-          - not _test_journald_config.changed
-        fail_msg: >
-          /etc/systemd/journald.conf is not in expected format:
-          {{ _test_journald_config.diff }}.
 
     - name: 'Default | verify | config | assert journald active'
       ansible.builtin.assert:
+        quiet: true
         that:
           - '"systemd-journald.service" in ansible_facts.services'
-        fail_msg: 'systemd-journald service should be enabled.'
+        fail_msg: '✘ systemd-journald service should be enabled.'
+
+    - name: 'Default | verify | /etc/systemd/journald.conf'
+      ansible.builtin.include_role:
+        name: 'r_pufky.lib.tests'
+        tasks_from: 'copy.yml'
+      vars:
+        test_name: 'Default | verify | /etc/systemd/journald.conf'
+        test_src: 'files/journald.conf'
+        test_file: '/etc/systemd/journald.conf'
+        test_owner: 'root'
+        test_group: 'root'
+        test_mode: '0644'

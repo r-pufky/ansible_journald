@@ -15,6 +15,7 @@
 # * https://www.freedesktop.org/software/systemd/man/latest/systemd.time.html
 # * https://www.freedesktop.org/software/systemd/man/latest/systemd.syntax.html
 # * https://www.freedesktop.org/software/systemd/man/latest/systemd-journald.service.html
+# yamllint enable rule:line-length
 
 # Where to store journal data.
 #
