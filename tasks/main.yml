@@ -1,4 +1,7 @@
 ---
+# Reference:
+# * https://manpages.debian.org/trixie/systemd/journald.conf.5.en.html
+
 - name: 'Set journald limits'
   notify: 'Handlers | restarted journald'
   ansible.builtin.template:
