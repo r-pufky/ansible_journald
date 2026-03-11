@@ -3,6 +3,8 @@
 # Journald Role Options
 ###############################################################################
 
-# Last time journald options were validated against a default configuration.
-journald_role_validate_date: '2025-08-21'
-journald_role_validate_release: 'trixie'
+journald_cfg___release: "{{ {} | r_pufky.data.v3(
+
+    _date='2025-08-21',
+    _debian='trixie',
+  ) }}"
