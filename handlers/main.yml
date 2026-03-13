@@ -5,6 +5,6 @@
 # Journald streams are uninterrupted during restart.
 
 - name: 'Handlers | journald'
-  ansible.builtin.service:
+  ansible.builtin.systemd:
     name: 'systemd-journald'
     state: 'restarted'
